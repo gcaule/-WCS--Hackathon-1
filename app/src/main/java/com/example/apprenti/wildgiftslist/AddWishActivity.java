@@ -151,7 +151,7 @@ public class AddWishActivity extends AppCompatActivity {
                             mName.getText().toString(),
                             mDescription.getText().toString(),
                             taskSnapshot.getDownloadUrl().toString(),
-                            mLink.getText().toString());
+                            mLink.getText().toString(), 0);
 
                     mDbRef.child("souhait").child(mIdWish).setValue(createdWish);
                     //Uri downloadUri = taskSnapshot.getDownloadUrl();

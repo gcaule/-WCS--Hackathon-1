@@ -13,13 +13,15 @@ public class WishModel {
     private String description;
     private String image;
     private String link;
+    private int cadeau;
 
-    public WishModel(String idWish,String name, String description, String image, String link) {
+    public WishModel(String idWish,String name, String description, String image, String link, int cadeau) {
         this.idWish = idWish;
         this.name = name;
         this.description = description;
         this.image = image;
         this.link = link;
+        this.cadeau = cadeau;
     }
 
     public WishModel() {
@@ -63,6 +65,14 @@ public class WishModel {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public int getCadeau() {
+        return cadeau;
+    }
+
+    public void setCadeau(int cadeau) {
+        this.cadeau = cadeau;
     }
 
 }

@@ -63,12 +63,20 @@ public class Adapter_List extends BaseAdapter {
         TextView descObj = (TextView) itemView.findViewById(R.id.descObj);
         TextView linkObj = (TextView) itemView.findViewById(R.id.linkObj);
         ImageView deleteGift = (ImageView) itemView.findViewById(R.id.deleteGift);
+        ImageView offeredGift = (ImageView) itemView.findViewById(R.id.offeredGift);
 
 
         nomObj.setText(list_Gifts.get(i).getName());
         descObj.setText(list_Gifts.get(i).getDescription());
         linkObj.setText(list_Gifts.get(i).getLink());
         Glide.with(activity).load(list_Gifts.get(i).getImage()).into(imgObj);
+
+        int cadeau = list_Gifts.get(i).getCadeau();
+        if (cadeau == 0) {
+            offeredGift.setVisibility(View.INVISIBLE);
+        } else {
+            offeredGift.setVisibility(View.VISIBLE);
+        }
 
         deleteGift.setOnClickListener(new View.OnClickListener() {
             @Override
