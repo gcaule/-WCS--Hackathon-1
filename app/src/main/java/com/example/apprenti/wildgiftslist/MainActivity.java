@@ -94,12 +94,12 @@ public class MainActivity extends AppCompatActivity {
         //TextView souhait = (TextView) findViewById(R.id.souhait);
         //TextView offert = (TextView) findViewById(R.id.offert);
         //TextView offrir = (TextView) findViewById(R.id.offrir);
-        mList_souhait = (ListView) findViewById(R.id.listsouhait);
+        mList_souhait = (ListView) findViewById(R.id.listwish);
 
         mFire = FirebaseDatabase.getInstance();
         mRef = mFire.getReference("User").child(usrID);
 
-        //addWish();
+        addWish();
 
         // perform setOnTabSelectedListener event on TabLayout
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
