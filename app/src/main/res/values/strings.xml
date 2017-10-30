@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Wild Gifts List</string>
+    <string name="add_wish">Ajouter un souhait</string>
+    <string name="name">Nom</string>
+    <string name="description">Description</string>
+    <string name="link">Lien</string>
+    <string name="abort">Annuler</string>
+    <string name="create">Créer</string>
 </resources>
