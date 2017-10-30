@@ -7,9 +7,19 @@
     tools:context="com.example.apprenti.wildgiftslist.MainActivity">
 
     <Button
+        android:id="@+id/test_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/test_button"
-        android:text="TEST"/>
+        android:text="TEST"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="87dp" />
+
+    <ImageView
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:layout_editor_absoluteX="295dp"
+        tools:layout_editor_absoluteY="153dp" />
 
 </android.support.constraint.ConstraintLayout>
