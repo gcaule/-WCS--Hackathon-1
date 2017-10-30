@@ -1,6 +1,7 @@
 package com.example.apprenti.wildgiftslist;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ public class Adapter_List_Souhait extends BaseAdapter {
     private Activity activity;
     private List<List_Souhait_Model> list_Souhait;
     private LayoutInflater inflater;
+    private WishModel wM = new WishModel();
 
     public Adapter_List_Souhait(Activity activity, List<List_Souhait_Model> list_Souhait) {
         this.activity = activity;
@@ -53,7 +55,7 @@ public class Adapter_List_Souhait extends BaseAdapter {
         TextView nomObj = (TextView) itemView.findViewById(R.id.nomObj);
 
         nomObj.setText(list_Souhait.get(i).getNameItem());
-       // Glide.with().load().into(imgObj);
+        Glide.with(activity).load(wM.getImage()).into(imgObj);
 
         return itemView;
     }
