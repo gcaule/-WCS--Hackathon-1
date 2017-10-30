@@ -27,18 +27,7 @@ public class Offert extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ImageView add = (ImageView) getView().findViewById(R.id.add);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = getActivity().getIntent();
-                final String usrID = intent.getStringExtra("userID");
 
-                Intent wishIntent = new Intent(getActivity(), AddWishActivity.class);
-                wishIntent.putExtra("userID", usrID);
-                getActivity().startActivity(wishIntent);
-            }
-        });
 
     }
 
