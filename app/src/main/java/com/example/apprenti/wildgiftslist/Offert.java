@@ -12,9 +12,9 @@ import android.widget.ImageView;
  * Created by katarie on 30/10/2017.
  */
 
-public class FirstFragment extends Fragment {
+public class Offert extends Fragment {
 
-    public FirstFragment() {
+    public Offert() {
         // Required empty public constructor
     }
 
@@ -46,6 +46,6 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        return inflater.inflate(R.layout.offert, container, false);
     }
 }

@@ -52,24 +52,22 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.simpleTabLayout);
         // Create a new Tab named "First"
         TabLayout.Tab firstTab = tabLayout.newTab();
-        firstTab.setText("First"); // set the Text for the first Tab
-        firstTab.setIcon(R.drawable.ic_launcher); // set an icon for the
+        firstTab.setText("Souhait"); // set the Text for the first Tab
         // first tab
         tabLayout.addTab(firstTab); // add  the tab at in the TabLayout
         // Create a new Tab named "Second"
         TabLayout.Tab secondTab = tabLayout.newTab();
-        secondTab.setText("Second"); // set the Text for the second Tab
-        secondTab.setIcon(R.drawable.ic_launcher); // set an icon for the second tab
+        secondTab.setText("Offert"); // set the Text for the second Tab
         tabLayout.addTab(secondTab); // add  the tab  in the TabLayout
         // Create a new Tab named "Third"
         TabLayout.Tab thirdTab = tabLayout.newTab();
-        thirdTab.setText("Third"); // set the Text for the first Tab
-        thirdTab.setIcon(R.drawable.ic_launcher); // set an icon for the first tab
+        thirdTab.setText("Offrir"); // set the Text for the first Tab
         tabLayout.addTab(thirdTab); // add  the tab at in the TabLayout
 
+        //default Selection premier onglet
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.simpleFrameLayout, new FirstFragment());
+        ft.replace(R.id.simpleFrameLayout, new Souhait());
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.commit();
 
@@ -105,13 +103,13 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment = null;
                 switch (tab.getPosition()) {
                     case 0:
-                        fragment = new FirstFragment();
+                        fragment = new Souhait();
                         break;
                     case 1:
-                        fragment = new SecondFragment();
+                        fragment = new Offert();
                         break;
                     case 2:
-                        fragment = new ThirdFragment();
+                        fragment = new Offrir();
                         break;
                 }
                 FragmentManager fm = getSupportFragmentManager();
