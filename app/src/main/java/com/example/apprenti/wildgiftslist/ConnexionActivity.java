@@ -101,7 +101,8 @@ public class ConnexionActivity extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
                                                 String questOrNot = dataSnapshot.getValue(String.class);
-                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                Intent intent = new Intent(ConnexionActivity.this, MainActivity.class);
+                                                intent.putExtra("userID", mUserId);
                                                 startActivity(intent);
                                             }
 

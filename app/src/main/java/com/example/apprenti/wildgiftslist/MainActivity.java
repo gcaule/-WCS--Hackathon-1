@@ -1,23 +1,44 @@
 package com.example.apprenti.wildgiftslist;
 
+import android.app.ActionBar;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-<<<<<<< HEAD
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-=======
->>>>>>> Valentin
+import android.view.ViewGroup;
 
 import android.widget.FrameLayout;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private FirebaseDatabase mFire;
+    private DatabaseReference mRef;
+    private ListView mList_souhait;
+    private int mBackButtonCount = 0;
 
     FrameLayout simpleFrameLayout;
     TabLayout tabLayout;
@@ -49,6 +70,30 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.simpleFrameLayout, new Souhait());
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.commit();
+
+        Intent intent = getIntent();
+        final String usrID = intent.getStringExtra("userID");
+
+        //Toolbar personnalisée avec bouton retour à la page précédente
+        //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        //getSupportActionBar().setCustomView(R.layout.abs_layout);
+
+        //TextView souhait = (TextView) findViewById(R.id.souhait);
+        //TextView offert = (TextView) findViewById(R.id.offert);
+        //TextView offrir = (TextView) findViewById(R.id.offrir);
+        mList_souhait = (ListView) findViewById(R.id.listsouhait);
+
+        mFire = FirebaseDatabase.getInstance();
+        mRef = mFire.getReference();
+
+        /*souhait.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //startActivity(new Intent(MainActivity.this, MainActivity.class));
+            }
+        });*/
+
 
         // perform setOnTabSelectedListener event on TabLayout
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -85,12 +130,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button add = (Button)findViewById(R.id.add);
-        add.setOnClickListener(new View.OnClickListener() {
+        /*offert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, AddWishActivity.class));
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
             }
         });
+
+        offrir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+            }
+        });*/
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mBackButtonCount = 0;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mBackButtonCount > 0) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+        else {
+           // Toast.makeText(this, "On va se calmer", Toast.LENGTH_SHORT).show();
+        }
     }
 }
