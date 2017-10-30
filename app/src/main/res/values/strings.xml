@@ -7,4 +7,7 @@
     <string name="created_user">Bienvenue</string>
     <string name="pseudo">Pseudo</string>
     <string name="password">Mot de passe</string>
+    <string name="Offert">Offerts</string>
+    <string name="souhait">Souhaits</string>
+    <string name="offrir">Offrir</string>
 </resources>
