@@ -46,13 +46,10 @@ public class AddWishActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_wish);
 
         mFire = FirebaseDatabase.getInstance();
-        mDbRef = mFire.getReference("user/wish");
+        mDbRef = mFire.getReference("user");
         mStorage = FirebaseStorage.getInstance().getReference();
 
-        mName = findViewById(R.id.name);
-        nameValue = mName.getText().toString();
-        mDescription = findViewById(R.id.description);
-        descriptionValue = mDescription.getText().toString();
+
         mLink = findViewById(R.id.link);
 
         mGiftImage = (ImageView) findViewById(R.id.giftImage);
@@ -70,11 +67,15 @@ public class AddWishActivity extends AppCompatActivity {
             }
         });
 
-        Button create = findViewById(R.id.button_create);
+        Button create = findViewById(R.id.send);
         create.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
+                mName = findViewById(R.id.name);
+                nameValue = mName.getText().toString();
+                mDescription = findViewById(R.id.description);
+                descriptionValue = mDescription.getText().toString();
                 if (nameValue.isEmpty() || descriptionValue.isEmpty() ) {
                     Toast.makeText(AddWishActivity.this,
                             getResources().getString(R.string.empty_fields),
@@ -93,6 +94,7 @@ public class AddWishActivity extends AppCompatActivity {
                     intent.setType("image/*");
                     startActivityForResult(intent, GALLERY_INTENT);
                 }
+
                 currentWish();
             }
         });
