@@ -78,14 +78,22 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(thirdTab); // add  the tab at in the TabLayout
 
         //default Selection premier onglet
+        Intent intent = getIntent();
+        final String usrID = intent.getStringExtra("userID");
+
+
+
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.simpleFrameLayout, new Souhait());
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        Bundle bundle = new Bundle();
+        bundle.putString("userID", usrID);
+        // set Fragmentclass Arguments
+        Souhait souhaitIntent = new Souhait();
+        souhaitIntent.setArguments(bundle);
         ft.commit();
 
-        Intent intent = getIntent();
-        final String usrID = intent.getStringExtra("userID");
 
         //Toolbar personnalisée avec bouton retour à la page précédente
         //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -94,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         //TextView souhait = (TextView) findViewById(R.id.souhait);
         //TextView offert = (TextView) findViewById(R.id.offert);
         //TextView offrir = (TextView) findViewById(R.id.offrir);
-        mList_souhait = (ListView) findViewById(R.id.listwish);
+        //mList_souhait = (ListView) findViewById(R.id.listwish);
 
         mFire = FirebaseDatabase.getInstance();
         mRef = mFire.getReference("User").child(usrID);
@@ -134,30 +142,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        addWish();
+        //addWish();
 
     }
         //souhait.setOnClickListener(new View.OnClickListener() {
 
-    protected void addWish(){
-        mRef.child("souhait").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snap : dataSnapshot.getChildren()){
-                    WishModel lsm = snap.getValue(WishModel.class);
-                    //Glide.with(MainActivity.this).load(lsm.getImage()).into();
-                    mWish_List.add(lsm);
-                    mAdapterListSouhait = new Adapter_List_Souhait(MainActivity.this, mWish_List);
-                    mList_souhait.setAdapter(mAdapterListSouhait);
-                }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     @Override
     protected void onResume() {
