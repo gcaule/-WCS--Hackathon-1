@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
         mFire = FirebaseDatabase.getInstance();
         mRef = mFire.getReference("User").child(usrID);
 
-        addWish();
 
         // perform setOnTabSelectedListener event on TabLayout
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -135,9 +134,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        addWish();
+
     }
         //souhait.setOnClickListener(new View.OnClickListener() {
-
 
     protected void addWish(){
         mRef.child("souhait").addValueEventListener(new ValueEventListener() {

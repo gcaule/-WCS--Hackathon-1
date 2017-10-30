@@ -59,7 +59,7 @@ public class Adapter_List_Souhait extends BaseAdapter {
         nomObj.setText(list_Souhait.get(i).getName());
         descObj.setText(list_Souhait.get(i).getDescription());
         linkObj.setText(list_Souhait.get(i).getLink());
-        Glide.with(activity).load(wM.getImage()).into(imgObj);
+        Glide.with(activity).load(list_Souhait.get(i).getImage()).into(imgObj);
 
         return itemView;
     }
