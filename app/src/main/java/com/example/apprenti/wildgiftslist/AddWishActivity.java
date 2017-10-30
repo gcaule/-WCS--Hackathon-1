@@ -72,6 +72,14 @@ public class AddWishActivity extends AppCompatActivity {
             }
         });
 
+        ImageView giftImage = (ImageView) findViewById(R.id.giftImage);
+        giftImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         Button create = findViewById(R.id.send);
         create.setOnClickListener(new View.OnClickListener() {
 
@@ -87,13 +95,12 @@ public class AddWishActivity extends AppCompatActivity {
                             getResources().getString(R.string.empty_fields),
                             Toast.LENGTH_LONG).show();
                 } else {
-
                     Intent intent = new Intent(Intent.ACTION_PICK);
                     intent.setType("image/*");
                     startActivityForResult(intent, GALLERY_INTENT);
                 }
 
-               // currentWish();
+                // currentWish();
             }
         });
     }
