@@ -126,7 +126,7 @@ public class AddWishActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String wishDescription = dataSnapshot.getValue(String.class);
-                description.setText(wishDescription);
+                mDescription.setText(wishDescription);
             }
 
             @Override
@@ -152,7 +152,7 @@ public class AddWishActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String wishLink = dataSnapshot.getValue(String.class);
-                link.setText(wishLink);
+                mLink.setText(wishLink);
             }
 
             @Override
