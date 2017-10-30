@@ -37,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
         thirdTab.setText("Offrir"); // set the Text for the first Tab
         tabLayout.addTab(thirdTab); // add  the tab at in the TabLayout
 
+        //default Selection premier onglet
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.simpleFrameLayout, new Souhait());
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.commit();
 
         // perform setOnTabSelectedListener event on TabLayout
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
