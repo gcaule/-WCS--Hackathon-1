@@ -19,11 +19,11 @@ import java.util.List;
 
 public class Adapter_List_Offrir extends BaseAdapter{
     private Activity activity;
-    private List<Offrir_Model> list_offrir;
+    private List<WishModel> list_offrir;
     private LayoutInflater inflater;
     private WishModel wM = new WishModel();
 
-    public Adapter_List_Offrir(Activity activity, List<Offrir_Model> list_offrir) {
+    public Adapter_List_Offrir(Activity activity, List<WishModel> list_offrir) {
         this.activity = activity;
         this.list_offrir = list_offrir;
     }
@@ -48,15 +48,15 @@ public class Adapter_List_Offrir extends BaseAdapter{
         inflater = (LayoutInflater)activity.getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.activity_list_offrir_item,null);
 
-        ImageView imgOff = (ImageView) itemView.findViewById(R.id.imgObj);
-        TextView nomOff = (TextView) itemView.findViewById(R.id.nomObj);
-        TextView descOff = (TextView) itemView.findViewById(R.id.descObj);
-        TextView destinataire = (TextView) itemView.findViewById(R.id.linkObj);
+        ImageView imgOff = (ImageView) itemView.findViewById(R.id.imgOff);
+        TextView nomOff = (TextView) itemView.findViewById(R.id.nomOff);
+        TextView descOff = (TextView) itemView.findViewById(R.id.descOff);
+       // TextView destinataire = (TextView) itemView.findViewById(R.id.linkOff);
 
-        nomOff.setText(list_offrir.get(i).getNameOff());
-        descOff.setText(list_offrir.get(i).getDescriptionOff());
-        destinataire.setText(list_offrir.get(i).getDestinataire());
-        Glide.with(activity).load(list_offrir.get(i).getImageOff()).into(imgOff);
+        nomOff.setText(list_offrir.get(i).getName());
+        descOff.setText(list_offrir.get(i).getDescription());
+        //destinataire.setText(list_offrir.get(i).getDestinataire());
+        Glide.with(activity).load(list_offrir.get(i).getImage()).into(imgOff);
 
         return itemView;
     }

@@ -146,13 +146,13 @@ public class AddWishActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
+                    mIdWish = mDbRef.push().getKey();
                     WishModel createdWish = new WishModel(UUID.randomUUID().toString(),
                             mName.getText().toString(),
                             mDescription.getText().toString(),
                             taskSnapshot.getDownloadUrl().toString(),
                             mLink.getText().toString());
 
-                    mIdWish = mDbRef.push().getKey();
                     mDbRef.child("souhait").child(mIdWish).setValue(createdWish);
                     //Uri downloadUri = taskSnapshot.getDownloadUrl();
                     Glide.with(AddWishActivity.this).load(createdWish.getImage()).into(mGiftImage);

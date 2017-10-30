@@ -42,13 +42,6 @@
         app:layout_constraintTop_toBottomOf="@+id/nomOff"
         app:layout_constraintVertical_bias="0.416" />
 
-    <TextView
-        android:id="@+id/destinataire"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/imgOff"
-        app:layout_constraintTop_toBottomOf="@+id/imgOff" />
+
 
 </android.support.constraint.ConstraintLayout>

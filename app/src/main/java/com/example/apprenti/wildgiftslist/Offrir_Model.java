@@ -5,7 +5,7 @@ package com.example.apprenti.wildgiftslist;
  */
 
 public class Offrir_Model {
-    private String idOffrir;
+    //private String idOffrir;
     private String nameOff;
     private String descriptionOff;
     private String imageOff;
@@ -15,21 +15,21 @@ public class Offrir_Model {
 
     }
 
-    public Offrir_Model(String idOffrir, String nameOff, String descriptionOff, String imageOff, String destinataire) {
-        this.idOffrir = idOffrir;
+    public Offrir_Model(String nameOff, String descriptionOff, String imageOff, String destinataire) {
+        //this.idOffrir = idOffrir;
         this.nameOff = nameOff;
         this.descriptionOff = descriptionOff;
         this.imageOff = imageOff;
         this.destinataire = destinataire;
     }
 
-    public String getIdOffrir() {
+    /*public String getIdOffrir() {
         return idOffrir;
-    }
+    }*/
 
-    public void setIdOffrir(String idOffrir) {
+   /* public void setIdOffrir(String idOffrir) {
         this.idOffrir = idOffrir;
-    }
+    }*/
 
     public String getNameOff() {
         return nameOff;
