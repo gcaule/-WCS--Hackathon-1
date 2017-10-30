@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Wild Gifts List</string>
-    // Page Connexion
+    <string name="add_wish">Ajouter un souhait</string>
+    <string name="name">Nom</string>
+    <string name="description">Description</string>
+    <string name="link">Lien</string>
+    <string name="abort">Annuler</string>
+    <string name="create">Créer</string>
     <string name="connexion">Connexion</string>
     <string name="error_password">Pseudo déjà utilisé ou mot de passe erroné</string>
     <string name="error_fill">Tu dois remplir tous les champs demandés</string>
