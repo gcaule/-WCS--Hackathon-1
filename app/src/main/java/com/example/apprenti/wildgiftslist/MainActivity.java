@@ -6,12 +6,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private FirebaseDatabase mFire;
+    private DatabaseReference mRef;
+    private ListView mList_souhait;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
         TextView souhait = (TextView) findViewById(R.id.souhait);
         TextView offert = (TextView) findViewById(R.id.offert);
         TextView offrir = (TextView) findViewById(R.id.offrir);
+        mList_souhait = (ListView) findViewById(R.id.listsouhait);
+
+        mFire = FirebaseDatabase.getInstance();
+        mRef = mFire.getReference();
 
         souhait.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button add = (Button) findViewById(R.id.add);
+        ImageView add = (ImageView) findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

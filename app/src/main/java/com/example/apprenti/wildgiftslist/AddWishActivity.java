@@ -56,15 +56,15 @@ public class AddWishActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.add_wish);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Button abort = findViewById(R.id.abort);
+       /* Button abort = findViewById(R.id.abort);
         abort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
-        });
+        });*/
 
-        Button create = findViewById(R.id.button_create);
+        /*Button create = findViewById(R.id.button_create);
         create.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -137,7 +137,7 @@ public class AddWishActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
         mDbRef.child("souhait/descriptionLien").addValueEventListener(new ValueEventListener() {
             @Override
