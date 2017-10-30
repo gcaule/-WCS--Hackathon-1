@@ -1,6 +1,5 @@
 package com.example.apprenti.wildgiftslist;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -36,6 +34,12 @@ public class AddWishActivity extends AppCompatActivity {
     private ImageView mGiftImage;
     private String mImageID;
 
+    private EditText mName;
+    private String nameValue;
+    private EditText mDescription;
+    private String descriptionValue;
+    private EditText mLink;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,26 +49,28 @@ public class AddWishActivity extends AppCompatActivity {
         mDbRef = mFire.getReference("user/wish");
         mStorage = FirebaseStorage.getInstance().getReference();
 
+        mName = findViewById(R.id.name);
+        nameValue = mName.getText().toString();
+        mDescription = findViewById(R.id.description);
+        descriptionValue = mDescription.getText().toString();
+        mLink = findViewById(R.id.link);
+
         mGiftImage = (ImageView) findViewById(R.id.giftImage);
 
-        final EditText name = findViewById(R.id.name);
-        final String nameValue = name.getText().toString();
-        final EditText description = findViewById(R.id.description);
-        final String descriptionValue = description.getText().toString();
-        final EditText link = findViewById(R.id.link);
+
 
         getSupportActionBar().setTitle(R.string.add_wish);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-       /* Button abort = findViewById(R.id.abort);
+        Button abort = findViewById(R.id.abort);
         abort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
-        });*/
+        });
 
-        /*Button create = findViewById(R.id.button_create);
+        Button create = findViewById(R.id.button_create);
         create.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -75,26 +81,25 @@ public class AddWishActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 } else {
 
-                    Wish createdWish = new Wish();
-                    createdWish.setName(name.getText().toString());
+                    /*createdWish.setName(name.getText().toString());
                     createdWish.setDescription(description.getText().toString());
                     createdWish.setImage(mImageID);
-                    createdWish.setLink(link.getText().toString());
+                    createdWish.setLink(link.getText().toString());*/
 
-                    mDbRef.child("souhait").setValue(createdWish);
-                    Toast.makeText(AddWishActivity.this, R.string.createdWish, Toast.LENGTH_SHORT).show();
+                    //mDbRef.child("souhait").setValue(createdWish);
+                    //Toast.makeText(AddWishActivity.this, R.string.createdWish, Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(Intent.ACTION_PICK);
                     intent.setType("image/*");
                     startActivityForResult(intent, GALLERY_INTENT);
                 }
-                createWish();
+                currentWish();
             }
         });
 
     }
 
-    protected void createWish() {
+    protected void currentWish() {
 
         final EditText name = findViewById(R.id.name);
         final EditText description = findViewById(R.id.description);
@@ -137,7 +142,7 @@ public class AddWishActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });*/
+        });
 
         mDbRef.child("souhait/descriptionLien").addValueEventListener(new ValueEventListener() {
             @Override
@@ -161,12 +166,18 @@ public class AddWishActivity extends AppCompatActivity {
         if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK){
             Uri uri = data.getData();
 
-            StorageReference filepath = mStorage.child("Image").child(uri.getLastPathSegment());
+            final StorageReference filepath = mStorage.child("Image").child(uri.getLastPathSegment());
             filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                    mImageID = mDbRef.push().getKey();
+                    WishModel createdWish = new WishModel(mName.getText().toString(),
+                            mDescription.getText().toString(),
+                            taskSnapshot.getDownloadUrl().toString(),
+                            mLink.getText().toString());
+
+                    String idWish = mDbRef.push().getKey();
+                    mDbRef.child("souhait").child(idWish).setValue(createdWish);
                     Uri downloadUri = taskSnapshot.getDownloadUrl();
                     Glide.with(AddWishActivity.this).load(downloadUri).into(mGiftImage);
                     Toast.makeText(AddWishActivity.this, R.string.download, Toast.LENGTH_LONG).show();

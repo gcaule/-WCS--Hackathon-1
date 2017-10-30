@@ -6,23 +6,33 @@ import android.media.Image;
  * Created by apprenti on 30/10/17.
  */
 
-public class Wish {
+public class WishModel {
 
+    //private String idWish;
     private String name;
     private String description;
     private String image;
     private String link;
 
-    public Wish(String name, String description, String image, String link) {
+    public WishModel(String name, String description, String image, String link) {
+        //this.idWish = idWish;
         this.name = name;
         this.description = description;
         this.image = image;
         this.link = link;
     }
 
-    public Wish() {
+    public WishModel() {
     }
 
+   /* public String getIdWish() {
+        return idWish;
+    }
+
+    public void setIdWish() {
+        this.idWish = idWish;
+    }
+    */
     public String getName() {
         return name;
     }
@@ -54,4 +64,5 @@ public class Wish {
     public void setLink(String link) {
         this.link = link;
     }
+
 }
