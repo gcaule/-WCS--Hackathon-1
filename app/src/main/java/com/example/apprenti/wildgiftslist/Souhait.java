@@ -10,9 +10,9 @@ import android.view.ViewGroup;
  * Created by katarie on 30/10/2017.
  */
 
-public class SecondFragment extends Fragment {
+public class Souhait extends Fragment {
 
-    public SecondFragment() {
+    public Souhait() {
         // Required empty public constructor
     }
 
@@ -25,7 +25,7 @@ public class SecondFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false);
+        return inflater.inflate(R.layout.souhait, container, false);
     }
 
 }
