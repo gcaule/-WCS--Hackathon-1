@@ -22,11 +22,11 @@ import java.util.List;
 
 public class Adapter_List_Souhait extends BaseAdapter {
     private Activity activity;
-    private List<List_Souhait_Model> list_Souhait;
+    private List<WishModel> list_Souhait;
     private LayoutInflater inflater;
     private WishModel wM = new WishModel();
 
-    public Adapter_List_Souhait(Activity activity, List<List_Souhait_Model> list_Souhait) {
+    public Adapter_List_Souhait(Activity activity, List<WishModel> list_Souhait) {
         this.activity = activity;
         this.list_Souhait = list_Souhait;
     }
@@ -53,8 +53,12 @@ public class Adapter_List_Souhait extends BaseAdapter {
 
         ImageView imgObj = (ImageView) itemView.findViewById(R.id.imgObj);
         TextView nomObj = (TextView) itemView.findViewById(R.id.nomObj);
+        TextView descObj = (TextView) itemView.findViewById(R.id.descObj);
+        TextView linkObj = (TextView) itemView.findViewById(R.id.linkObj);
 
-        nomObj.setText(list_Souhait.get(i).getNameItem());
+        nomObj.setText(list_Souhait.get(i).getName());
+        descObj.setText(list_Souhait.get(i).getDescription());
+        linkObj.setText(list_Souhait.get(i).getLink());
         Glide.with(activity).load(wM.getImage()).into(imgObj);
 
         return itemView;

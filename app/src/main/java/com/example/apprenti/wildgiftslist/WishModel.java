@@ -8,14 +8,14 @@ import android.media.Image;
 
 public class WishModel {
 
-    //private String idWish;
+    private String idWish;
     private String name;
     private String description;
     private String image;
     private String link;
 
-    public WishModel(String name, String description, String image, String link) {
-        //this.idWish = idWish;
+    public WishModel(String idWish,String name, String description, String image, String link) {
+        this.idWish = idWish;
         this.name = name;
         this.description = description;
         this.image = image;
@@ -25,14 +25,14 @@ public class WishModel {
     public WishModel() {
     }
 
-   /* public String getIdWish() {
+    public String getIdWish() {
         return idWish;
     }
 
     public void setIdWish() {
         this.idWish = idWish;
     }
-    */
+
     public String getName() {
         return name;
     }

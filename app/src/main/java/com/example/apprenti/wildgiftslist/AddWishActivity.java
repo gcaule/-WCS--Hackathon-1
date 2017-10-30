@@ -23,6 +23,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.UUID;
+
 public class AddWishActivity extends AppCompatActivity {
 
     private FirebaseDatabase mFire;
@@ -40,6 +42,8 @@ public class AddWishActivity extends AppCompatActivity {
     private String descriptionValue;
     private EditText mLink;
     private User user;
+
+    public String mIdWish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,13 +178,14 @@ public class AddWishActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                    WishModel createdWish = new WishModel(mName.getText().toString(),
+                    WishModel createdWish = new WishModel(UUID.randomUUID().toString(),
+                            mName.getText().toString(),
                             mDescription.getText().toString(),
                             taskSnapshot.getDownloadUrl().toString(),
                             mLink.getText().toString());
 
-                    String idWish = mDbRef.push().getKey();
-                    mDbRef.child("souhait").child(idWish).setValue(createdWish);
+                    mIdWish = mDbRef.push().getKey();
+                    mDbRef.child("souhait").child(mIdWish).setValue(createdWish);
                     //Uri downloadUri = taskSnapshot.getDownloadUrl();
                     Glide.with(AddWishActivity.this).load(createdWish.getImage()).into(mGiftImage);
                     Toast.makeText(AddWishActivity.this, R.string.download, Toast.LENGTH_LONG).show();
