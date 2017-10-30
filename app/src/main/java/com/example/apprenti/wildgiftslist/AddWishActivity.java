@@ -46,8 +46,11 @@ public class AddWishActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_wish);
 
+        Intent intent = getIntent();
+        final String usrID = intent.getStringExtra("userID");
+
         mFire = FirebaseDatabase.getInstance();
-        mDbRef = mFire.getReference();
+        mDbRef = mFire.getReference("User");
         mStorage = FirebaseStorage.getInstance().getReference();
 
         mName = (EditText) findViewById(R.id.name);
@@ -89,6 +92,8 @@ public class AddWishActivity extends AppCompatActivity {
                     intent.setType("image/*");
                     startActivityForResult(intent, GALLERY_INTENT);
                 }
+
+                currentWish();
             }
         });
        // currentWish();
@@ -116,6 +121,46 @@ public class AddWishActivity extends AppCompatActivity {
 
             }
         });
+
+        mDbRef.child("souhait/descriptionSouhait").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String wishDescription = dataSnapshot.getValue(String.class);
+                description.setText(wishDescription);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDbRef.child("souhait/image").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String wishImage = dataSnapshot.getValue(String.class);
+                //description.setText(wishImage);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDbRef.child("souhait/descriptionLien").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String wishLink = dataSnapshot.getValue(String.class);
+                link.setText(wishLink);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     @Override
