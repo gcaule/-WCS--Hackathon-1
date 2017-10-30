@@ -89,9 +89,6 @@ public class AddWishActivity extends AppCompatActivity {
                     startActivityForResult(intent, GALLERY_INTENT);
                 }
                 createWish();
-
-
-
             }
         });
 
