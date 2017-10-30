@@ -50,7 +50,7 @@ public class AddWishActivity extends AppCompatActivity {
         final String usrID = intent.getStringExtra("userID");
 
         mFire = FirebaseDatabase.getInstance();
-        mDbRef = mFire.getReference("User");
+        mDbRef = mFire.getReference("User").child(usrID);
         mStorage = FirebaseStorage.getInstance().getReference();
 
         mName = (EditText) findViewById(R.id.name);
@@ -93,10 +93,9 @@ public class AddWishActivity extends AppCompatActivity {
                     startActivityForResult(intent, GALLERY_INTENT);
                 }
 
-                currentWish();
+               // currentWish();
             }
         });
-       // currentWish();
     }
 
     protected void currentWish() {

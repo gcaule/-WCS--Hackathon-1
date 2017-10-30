@@ -45,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
         souhait.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, MainActivity.class));
+
+                //startActivity(new Intent(MainActivity.this, MainActivity.class));
             }
         });
 
@@ -69,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddWishActivity.class);
                 intent.putExtra("userID", usrID);
-                startActivity(new Intent(MainActivity.this, AddWishActivity.class));
+                //startActivity(new Intent(MainActivity.this, AddWishActivity.class));
+                startActivity(intent);
             }
         });
     }
