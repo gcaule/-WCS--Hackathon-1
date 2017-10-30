@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * Created by katarie on 30/10/2017.
@@ -30,7 +28,7 @@ import java.util.zip.Inflater;
 public class Souhait extends Fragment {
 
     private ListView mList_souhait;
-    private Adapter_List_Souhait mAdapterListSouhait;
+    private Adapter_List mAdapterListSouhait;
     private List<WishModel> mWish_List = new ArrayList<>();
     private WishModel mWm = new WishModel();
     private DatabaseReference mRef;
@@ -41,12 +39,10 @@ public class Souhait extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         // Inflate the layout for this fragment
         ConstraintLayout rootView = (ConstraintLayout) inflater.inflate(R.layout.souhait, container, false);
 
         mList_souhait = (ListView) rootView.findViewById(R.id.listsouhait);
-
 
         final SharedPreferences sharedpreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         mUserID = sharedpreferences.getString("mUserId", "");
@@ -79,7 +75,7 @@ public class Souhait extends Fragment {
                     WishModel lsm = snap.getValue(WishModel.class);
                     //Glide.with(MainActivity.this).load(lsm.getImage()).into();
                     mWish_List.add(lsm);
-                    mAdapterListSouhait = new Adapter_List_Souhait(getActivity(), mWish_List);
+                    mAdapterListSouhait = new Adapter_List(getActivity(), mWish_List);
                     mList_souhait.setAdapter(mAdapterListSouhait);
                 }
 

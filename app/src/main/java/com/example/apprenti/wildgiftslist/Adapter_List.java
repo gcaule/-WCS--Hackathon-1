@@ -1,9 +1,7 @@
 package com.example.apprenti.wildgiftslist;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,25 +18,25 @@ import java.util.List;
  * Created by apprenti on 30/10/17.
  */
 
-public class Adapter_List_Souhait extends BaseAdapter {
+public class Adapter_List extends BaseAdapter {
     private Activity activity;
-    private List<WishModel> list_Souhait;
+    private List<WishModel> list_Gifts;
     private LayoutInflater inflater;
     private WishModel wM = new WishModel();
 
-    public Adapter_List_Souhait(Activity activity, List<WishModel> list_Souhait) {
+    public Adapter_List(Activity activity, List<WishModel> list_Gifts) {
         this.activity = activity;
-        this.list_Souhait = list_Souhait;
+        this.list_Gifts = list_Gifts;
     }
 
     @Override
     public int getCount() {
-        return list_Souhait.size();
+        return list_Gifts.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return list_Souhait.get(i);
+        return list_Gifts.get(i);
     }
 
     @Override
@@ -56,10 +54,10 @@ public class Adapter_List_Souhait extends BaseAdapter {
         TextView descObj = (TextView) itemView.findViewById(R.id.descObj);
         TextView linkObj = (TextView) itemView.findViewById(R.id.linkObj);
 
-        nomObj.setText(list_Souhait.get(i).getName());
-        descObj.setText(list_Souhait.get(i).getDescription());
-        linkObj.setText(list_Souhait.get(i).getLink());
-        Glide.with(activity).load(list_Souhait.get(i).getImage()).into(imgObj);
+        nomObj.setText(list_Gifts.get(i).getName());
+        descObj.setText(list_Gifts.get(i).getDescription());
+        linkObj.setText(list_Gifts.get(i).getLink());
+        Glide.with(activity).load(list_Gifts.get(i).getImage()).into(imgObj);
 
         return itemView;
     }
