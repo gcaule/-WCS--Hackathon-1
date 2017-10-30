@@ -147,7 +147,7 @@ public class AddWishActivity extends AppCompatActivity {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                     mIdWish = mDbRef.push().getKey();
-                    WishModel createdWish = new WishModel(UUID.randomUUID().toString(),
+                    WishModel createdWish = new WishModel(mIdWish,
                             mName.getText().toString(),
                             mDescription.getText().toString(),
                             taskSnapshot.getDownloadUrl().toString(),
