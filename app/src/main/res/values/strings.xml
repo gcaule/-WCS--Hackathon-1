@@ -15,4 +15,7 @@
     <string name="Offert">Offerts</string>
     <string name="souhait">Souhaits</string>
     <string name="offrir">Offrir</string>
+    <string name="empty_fields">Veuillez remplir les champs \'Nom\' et \'Description\'</string>
+    <string name="download">Téléchargement</string>
+    <string name="createdWish">Souhait créé</string>
 </resources>
