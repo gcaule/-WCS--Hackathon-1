@@ -39,6 +39,7 @@ public class AddWishActivity extends AppCompatActivity {
     private EditText mDescription;
     private String descriptionValue;
     private EditText mLink;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +47,12 @@ public class AddWishActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_wish);
 
         mFire = FirebaseDatabase.getInstance();
-        mDbRef = mFire.getReference("user");
+        mDbRef = mFire.getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
 
-
-        mLink = findViewById(R.id.link);
+        mName = (EditText) findViewById(R.id.name);
+        mDescription = (EditText) findViewById(R.id.description);
+        mLink = (EditText) findViewById(R.id.link);
 
         mGiftImage = (ImageView) findViewById(R.id.giftImage);
 
@@ -72,9 +74,10 @@ public class AddWishActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                mName = findViewById(R.id.name);
+                mName = (EditText) findViewById(R.id.name);
+                mDescription = (EditText) findViewById(R.id.description);
+                mLink = (EditText) findViewById(R.id.link);
                 nameValue = mName.getText().toString();
-                mDescription = findViewById(R.id.description);
                 descriptionValue = mDescription.getText().toString();
                 if (nameValue.isEmpty() || descriptionValue.isEmpty() ) {
                     Toast.makeText(AddWishActivity.this,
@@ -82,36 +85,30 @@ public class AddWishActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 } else {
 
-                    /*createdWish.setName(name.getText().toString());
-                    createdWish.setDescription(description.getText().toString());
-                    createdWish.setImage(mImageID);
-                    createdWish.setLink(link.getText().toString());*/
-
-                    //mDbRef.child("souhait").setValue(createdWish);
-                    //Toast.makeText(AddWishActivity.this, R.string.createdWish, Toast.LENGTH_SHORT).show();
-
                     Intent intent = new Intent(Intent.ACTION_PICK);
                     intent.setType("image/*");
                     startActivityForResult(intent, GALLERY_INTENT);
                 }
-
-                currentWish();
             }
         });
-
+       // currentWish();
     }
 
     protected void currentWish() {
 
-        final EditText name = findViewById(R.id.name);
-        final EditText description = findViewById(R.id.description);
-        final EditText link = findViewById(R.id.link);
-
-        mDbRef.child("souhait/nomSouhait").addValueEventListener(new ValueEventListener() {
+        mDbRef.child("souhait").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String nameWish = dataSnapshot.getValue(String.class);
-                name.setText(nameWish);
+
+                mName = (EditText) findViewById(R.id.name);
+                mDescription = (EditText) findViewById(R.id.description);
+                mLink = (EditText) findViewById(R.id.link);
+
+                WishModel wishAdd = dataSnapshot.getValue(WishModel.class);
+                mName.setText(wishAdd.getName());
+                mDescription.setText(wishAdd.getDescription());
+                mLink.setText(wishAdd.getLink());
+                Glide.with(getApplicationContext()).load(wishAdd.getImage()).into(mGiftImage);
             }
 
             @Override
@@ -119,46 +116,6 @@ public class AddWishActivity extends AppCompatActivity {
 
             }
         });
-
-        mDbRef.child("souhait/descriptionSouhait").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String wishDescription = dataSnapshot.getValue(String.class);
-                description.setText(wishDescription);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        mDbRef.child("souhait/descriptionImage").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String wishImage = dataSnapshot.getValue(String.class);
-                description.setText(wishImage);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        mDbRef.child("souhait/descriptionLien").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String wishLink = dataSnapshot.getValue(String.class);
-                link.setText(wishLink);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
     }
 
     @Override
@@ -180,8 +137,8 @@ public class AddWishActivity extends AppCompatActivity {
 
                     String idWish = mDbRef.push().getKey();
                     mDbRef.child("souhait").child(idWish).setValue(createdWish);
-                    Uri downloadUri = taskSnapshot.getDownloadUrl();
-                    Glide.with(AddWishActivity.this).load(downloadUri).into(mGiftImage);
+                    //Uri downloadUri = taskSnapshot.getDownloadUrl();
+                    Glide.with(AddWishActivity.this).load(createdWish.getImage()).into(mGiftImage);
                     Toast.makeText(AddWishActivity.this, R.string.download, Toast.LENGTH_LONG).show();
                 }
             });
