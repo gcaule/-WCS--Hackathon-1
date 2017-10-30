@@ -47,7 +47,7 @@ public class Offrir extends Fragment {
         ConstraintLayout rootView = (ConstraintLayout) inflater.inflate(R.layout.offrir, container, false);
         EditText rechercher = (EditText) rootView.findViewById(R.id.rechercherOff);
         Button search = (Button) rootView.findViewById(R.id.search);
-        mListOff = (ListView) rootView.findViewById(R.id.listOff);
+        mListOff = (ListView) rootView.findViewById(R.id.listoffrir);
 
         mFire = FirebaseDatabase.getInstance();
         mRef = mFire.getReference("User");
