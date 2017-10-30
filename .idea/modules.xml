@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WildGiftsList.iml" filepath="$PROJECT_DIR$/WildGiftsList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hackathon.iml" filepath="$PROJECT_DIR$/Hackathon.iml" />
+      <module fileurl="file://C:\Users\katarie\Documents\GitHub\Hackathon\WildGiftsList.iml" filepath="C:\Users\katarie\Documents\GitHub\Hackathon\WildGiftsList.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -95,6 +95,20 @@ public class ConnexionActivity extends AppCompatActivity {
                                         editor.putString("mUserId", mUserId);
                                         editor.apply();
 
+                                        DatabaseReference db1 = FirebaseDatabase.getInstance().getReference("User");
+                                        DatabaseReference db2 = db1.child(mUserId).child("user_quest");
+                                        db2.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                String questOrNot = dataSnapshot.getValue(String.class);
+                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                startActivity(intent);
+                                            }
+
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+                                            }
+                                        });
                                     } else {
                                         // Si le mot de passe ou le pseudo ne concordent pas
                                         Toast.makeText(getApplicationContext(), R.string.error_password, Toast.LENGTH_SHORT).show();
