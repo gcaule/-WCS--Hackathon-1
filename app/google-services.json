@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "792755747331",
+    "firebase_url": "https://wild-gift-list.firebaseio.com",
+    "project_id": "wild-gift-list",
+    "storage_bucket": "wild-gift-list.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792755747331:android:6b7eeff5a5915e31",
+        "android_client_info": {
+          "package_name": "com.example.apprenti.wildgiftslist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "792755747331-47oodcngb32jl747ifmmk0n17v45p2eh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.apprenti.wildgiftslist",
+            "certificate_hash": "2c8356f7f420c9f0061d1aaa632dfad44327e303"
+          }
+        },
+        {
+          "client_id": "792755747331-203l8j2v253kvhgin9car27ob08sh0bp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.apprenti.wildgiftslist",
+            "certificate_hash": "31b2e70e3e87d36e34019611a9d4fa0383143b6a"
+          }
+        },
+        {
+          "client_id": "792755747331-fcl78iriu129a8f7l9mmk6c5cd8tfonc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.apprenti.wildgiftslist",
+            "certificate_hash": "87e43e6f284a133702ad8f2d544792c0c6deb17c"
+          }
+        },
+        {
+          "client_id": "792755747331-03utkm39kcdf3sbbe1albnrdl4a4u8hm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB36eLkG8FBsyhQFR9MGgGdcYLetH5StUM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "792755747331-03utkm39kcdf3sbbe1albnrdl4a4u8hm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
