@@ -45,8 +45,11 @@ public class AddWishActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_wish);
 
+        Intent intent = getIntent();
+        final String usrID = intent.getStringExtra("userID");
+
         mFire = FirebaseDatabase.getInstance();
-        mDbRef = mFire.getReference("user");
+        mDbRef = mFire.getReference("User");
         mStorage = FirebaseStorage.getInstance().getReference();
 
 
@@ -133,11 +136,11 @@ public class AddWishActivity extends AppCompatActivity {
             }
         });
 
-        mDbRef.child("souhait/descriptionImage").addValueEventListener(new ValueEventListener() {
+        mDbRef.child("souhait/image").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String wishImage = dataSnapshot.getValue(String.class);
-                description.setText(wishImage);
+                //description.setText(wishImage);
             }
 
             @Override
@@ -180,6 +183,7 @@ public class AddWishActivity extends AppCompatActivity {
 
                     String idWish = mDbRef.push().getKey();
                     mDbRef.child("souhait").child(idWish).setValue(createdWish);
+
                     Uri downloadUri = taskSnapshot.getDownloadUrl();
                     Glide.with(AddWishActivity.this).load(downloadUri).into(mGiftImage);
                     Toast.makeText(AddWishActivity.this, R.string.download, Toast.LENGTH_LONG).show();
