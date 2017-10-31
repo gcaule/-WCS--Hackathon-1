@@ -15,10 +15,12 @@ import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -51,7 +53,6 @@ public class Offrir extends Fragment {
         final ConstraintLayout rootView = (ConstraintLayout) inflater.inflate(R.layout.offrir, container, false);
         mRechercher = (EditText) rootView.findViewById(R.id.rechercherOff);
         Button search = (Button) rootView.findViewById(R.id.search);
-        mListOff = (ListView) rootView.findViewById(R.id.listoffrir);
 
         mFire = FirebaseDatabase.getInstance();
         mRef = mFire.getReference("User");
@@ -66,18 +67,42 @@ public class Offrir extends Fragment {
             public void onClick(View view) {
 
                 final String personne = mRechercher.getText().toString();
-                mRef.addValueEventListener(new ValueEventListener() {
+                mRef.orderByChild("user_name").equalTo(personne).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot userDatasnapshot : dataSnapshot.getChildren()){
+                            //User user = userDatasnapshot.getValue(User.class);
+
+                            ListView list = rootView.findViewById(R.id.listoffrir);
+
+                            Query wishQuery = mRef.child(userDatasnapshot.getKey()).child("souhait").orderByKey();
+                            GiftAdapter adapter = new GiftAdapter(
+                                    wishQuery,
+                                    getActivity(), R.layout.activity_list_offrir_item);
+                            list.setAdapter(adapter);
+                            //WishModel off = userDatasnapshot.getValue(WishModel.class);
+                            //offrir_models.add(off);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                        /*addChildEventListener(new ChildEventListener() {
+
+                    //@Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                         for (DataSnapshot data : dataSnapshot.getChildren()) {
-                            //User personne = data.getValue(User.class);
-                            /*if (personne.equals(usr.getUser_name())) {
-                                mRef = mRef.child("souhait");
-                                WishModel off = dataSnapshot.getValue(WishModel.class);
-                                offrir_models.add(off);
-                                mAdapter_Off = new Adapter_List_Offrir(getActivity(), offrir_models);
+                            User user = data.getValue(User.class);
+                            if (personne.equals(usr.getUser_name())) {*/
+                               /*mRef = mRef.child("souhait");
+                                WishModel off = data.getValue(WishModel.class);
+                                offrir_models.add(off);*/
+                                /*mAdapter_Off = new Adapter_List_Offrir(getActivity(), offrir_models);
                                 mListOff.setAdapter(mAdapter_Off);
-                            }*/
+
 
                             ListView list = rootView.findViewById(R.id.listoffrir);
 
@@ -91,10 +116,25 @@ public class Offrir extends Fragment {
                     }
 
                     @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
-                });
+                });*/
             }
         });
         return rootView;
