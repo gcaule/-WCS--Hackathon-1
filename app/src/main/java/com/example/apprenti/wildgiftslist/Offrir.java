@@ -71,7 +71,6 @@ public class Offrir extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for(DataSnapshot userDatasnapshot : dataSnapshot.getChildren()){
-                            //User user = userDatasnapshot.getValue(User.class);
 
                             ListView list = rootView.findViewById(R.id.listoffrir);
 
@@ -80,8 +79,6 @@ public class Offrir extends Fragment {
                                     wishQuery,
                                     getActivity(), R.layout.activity_list_offrir_item);
                             list.setAdapter(adapter);
-                            //WishModel off = userDatasnapshot.getValue(WishModel.class);
-                            //offrir_models.add(off);
                         }
                     }
 
@@ -90,51 +87,6 @@ public class Offrir extends Fragment {
 
                     }
                 });
-                        /*addChildEventListener(new ChildEventListener() {
-
-                    //@Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                        for (DataSnapshot data : dataSnapshot.getChildren()) {
-                            User user = data.getValue(User.class);
-                            if (personne.equals(usr.getUser_name())) {*/
-                               /*mRef = mRef.child("souhait");
-                                WishModel off = data.getValue(WishModel.class);
-                                offrir_models.add(off);*/
-                                /*mAdapter_Off = new Adapter_List_Offrir(getActivity(), offrir_models);
-                                mListOff.setAdapter(mAdapter_Off);
-
-
-                            ListView list = rootView.findViewById(R.id.listoffrir);
-
-                            DatabaseReference giftOffered = mRef.child("souhait");
-                            GiftAdapter adapter = new GiftAdapter(
-                                    giftOffered,
-                                    getActivity(), R.layout.activity_list_offrir_item);
-                            list.setAdapter(adapter);
-                        }
-
-                    }
-
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });*/
             }
         });
         return rootView;

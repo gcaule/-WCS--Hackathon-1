@@ -71,7 +71,7 @@ public class WishModel {
         return cadeau;
     }
 
-    public void setCadeau(int cadeau) {
+    public int setCadeau(int cadeau) {
         this.cadeau = cadeau;
     }
 
