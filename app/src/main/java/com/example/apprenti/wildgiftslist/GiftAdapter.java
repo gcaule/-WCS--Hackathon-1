@@ -8,8 +8,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.Query;
 
-import java.text.SimpleDateFormat;
-
 /**
  * @author greg
  * @since 6/21/13

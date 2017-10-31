@@ -23,8 +23,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.util.UUID;
-
 public class AddWishActivity extends AppCompatActivity {
 
     private FirebaseDatabase mFire;
@@ -103,8 +101,6 @@ public class AddWishActivity extends AppCompatActivity {
                     intent.setType("image/*");
                     startActivityForResult(intent, GALLERY_INTENT);
                 }
-
-                // currentWish();
             }
         });
     }

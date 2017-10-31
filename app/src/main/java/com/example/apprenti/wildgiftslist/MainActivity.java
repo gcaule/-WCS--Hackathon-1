@@ -71,18 +71,8 @@ public class MainActivity extends AppCompatActivity {
         souhaitIntent.setArguments(bundle);
         ft.commit();
 
-
-        //Toolbar personnalisée avec bouton retour à la page précédente
-        //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        //getSupportActionBar().setCustomView(R.layout.abs_layout);
-
-        //TextView souhait = (TextView) findViewById(R.id.souhait);
-        //TextView offert = (TextView) findViewById(R.id.offert);
-        //TextView offrir = (TextView) findViewById(R.id.offrir);
-        //mList_souhait = (ListView) findViewById(R.id.listwish);
-
         mFire = FirebaseDatabase.getInstance();
-        mRef = mFire.getReference("User").child(usrID);
+        //mRef = mFire.getReference("User").child(usrID);
 
 
         // perform setOnTabSelectedListener event on TabLayout
@@ -119,12 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        //addWish();
-
     }
-        //souhait.setOnClickListener(new View.OnClickListener() {
-
-
 
     @Override
     protected void onResume() {
@@ -139,9 +124,6 @@ public class MainActivity extends AppCompatActivity {
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-        }
-        else {
-           // Toast.makeText(this, "On va se calmer", Toast.LENGTH_SHORT).show();
         }
     }
 }

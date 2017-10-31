@@ -1,7 +1,5 @@
 package com.example.apprenti.wildgiftslist;
 
-import android.media.Image;
-
 /**
  * Created by apprenti on 30/10/17.
  */
@@ -71,7 +69,7 @@ public class WishModel {
         return cadeau;
     }
 
-    public int setCadeau(int cadeau) {
+    public void setCadeau(int cadeau) {
         this.cadeau = cadeau;
     }
 

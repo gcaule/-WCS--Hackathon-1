@@ -2,8 +2,6 @@ package com.example.apprenti.wildgiftslist;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -65,19 +58,6 @@ public class Adapter_List_Offrir extends BaseAdapter{
         descOff.setText(list_offrir.get(i).getDescription());
         //destinataire.setText(list_offrir.get(i).getDestinataire());
         Glide.with(activity).load(list_offrir.get(i).getImage()).into(imgOff);
-
-        offeredGift.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final SharedPreferences sharedpreferences = PreferenceManager.getDefaultSharedPreferences(convertView.getContext());
-                String mUserID = sharedpreferences.getString("mUserId", "");
-                FirebaseDatabase mFire = FirebaseDatabase.getInstance();
-                DatabaseReference mRef = mFire.getReference("User").child(mUserID);
-
-                int cadeau = list_offrir.get(i).setCadeau(1);
-
-            }
-        });
 
         return itemView;
     }
